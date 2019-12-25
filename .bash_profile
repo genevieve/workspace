@@ -2,6 +2,7 @@
 
 function main() {
   function setup_aliases() {
+    alias gst="git status"
     alias vim="nvim"
     alias vi="nvim"
     alias ll="ls -al"
