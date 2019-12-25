@@ -69,7 +69,7 @@ function main() {
     local colorscheme
     colorscheme="${HOME}/.config/colorschemes/scripts/base16-tomorrow-night.sh"
 
-    # shellcheck source=/Users/ryanmoran/.config/colorschemes/scripts/base16-tomorrow-night.sh
+    # shellcheck source=/Users/genevieve/.config/colorschemes/scripts/base16-tomorrow-night.sh
     [[ -s "${colorscheme}" ]] && source "${colorscheme}"
   }
 
@@ -92,7 +92,7 @@ function main() {
 }
 
 function reload() {
-  # shellcheck source=/Users/ryanmoran/.bash_profile
+  # shellcheck source=/Users/genevieve/.bash_profile
   source "${HOME}/.bash_profile"
 }
 
@@ -101,7 +101,7 @@ function reinstall() {
   workspace="${HOME}/workspace/workspace"
 
   if [[ ! -d "${workspace}" ]]; then
-    git clone git@github.com:ryanmoran/workspace "${workspace}"
+    git clone git@github.com:genevieve/workspace "${workspace}"
   fi
 
   pushd "${workspace}" > /dev/null || return
