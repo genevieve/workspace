@@ -15,6 +15,7 @@ brew 'the_silver_searcher'
 brew 'watch'
 brew 'wget'
 brew 'yq'
+brew 'z'
 
 cask '1password'
 cask 'docker'
