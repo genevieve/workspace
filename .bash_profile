@@ -34,11 +34,11 @@ function main() {
     }
 
     function _gitstatus() {
-      local branch status
+      local branch
       branch="$(git branch 2>/dev/null | grep '^\*' | colrm 1 2)"
 
       if [[ "${branch}" != "" ]]; then
-        printf "[%s] %s" "${branch}" "${status}"
+        printf "[%s]" "${branch}"
       fi
     }
 
