@@ -22,17 +22,6 @@ function main() {
 
     export EDITOR="nvim"
 
-    function _bgjobs() {
-      local count
-      count="$(jobs | wc -l | tr -d ' ')"
-
-      if [[ "${count}" == "1" ]]; then
-        printf "%s" "${count} job "
-      elif [[ "${count}" != "0" ]]; then
-        printf "%s" "${count} jobs "
-      fi
-    }
-
     function _gitstatus() {
       local branch
       branch="$(git branch 2>/dev/null | grep '^\*' | colrm 1 2)"
@@ -43,22 +32,13 @@ function main() {
     }
 
     function _prompt() {
-      local status="${?}"
-
       local reset lightblue lightgreen lightred
       reset="\e[0m"
       lightblue="\e[94m"
       lightgreen="\e[92m"
       lightred="\e[91m"
 
-      if [[ "${status}" != "0" ]]; then
-        status="$(printf "%s" " ☠️  ${lightred}{${status}}${reset}")"
-      else
-        status=""
-      fi
-
-
-      PS1="${lightblue}\\d${reset} \\t ${lightred}\$(_bgjobs)${reset}${lightgreen}\\w${reset}${status} \$(_gitstatus) \n ‣ "
+      PS1="${lightblue}\\d${reset} \\t ${reset}${lightgreen}\\w${reset}${status} \$(_gitstatus) \n ‣ "
     }
 
     if [[ "${PROMPT_COMMAND}" != *"_prompt"* ]]; then
@@ -78,12 +58,17 @@ function main() {
     [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
   }
 
+  function setup_z() {
+    source "/usr/local/etc/profile.d/z.sh"
+  }
+
   local dependencies
     dependencies=(
         aliases
         environment
         colors
         completions
+        z
       )
 
   for dependency in "${dependencies[@]}"; do
