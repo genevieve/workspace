@@ -37,6 +37,7 @@ function main() {
 	nvim -c "PlugInstall" -c "PlugUpdate" -c "qall" --headless
 	nvim -c "GoInstallBinaries" -c "GoUpdateBinaries" -c "qall!" --headless /tmp/foo.go
 
+	go get -u github.com/gobuffalo/packr/v2/packr2
 	go get -u github.com/onsi/ginkgo/ginkgo
 	go get -u github.com/onsi/gomega
 
