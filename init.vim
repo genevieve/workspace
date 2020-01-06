@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'flazz/vim-colorschemes' " All the colorschemes
 Plug 'tpope/vim-fugitive'     " Git Commands
 Plug 'fatih/vim-go'           " Lets do go development
+Plug 'hashivim/vim-terraform' " Format terraform hcl
 Plug 'benekastah/neomake'     " Nevoim specific plugins
 Plug 'tpope/vim-unimpaired'   " Pairs of handy bracket mappings
 Plug 'tpope/vim-commentary'   " Make commenting easier
@@ -61,6 +62,10 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_function_parameters = 1
 let g:go_highlight_function_calls = 1
 let g:go_auto_type_info = 1
+
+" Terrraform Declaration
+let g:terraform_fmt_on_save=1
+let g:terraform_align=1
 
 " Turn on go-implements
 au FileType go nmap <Leader>i <Plug>(go-implements)
