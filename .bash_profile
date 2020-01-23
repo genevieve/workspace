@@ -22,6 +22,8 @@ function main() {
 
     export EDITOR="nvim"
 
+    export LPASS_AGENT_TIMEOUT=0
+
     function _gitstatus() {
       local branch
       branch="$(git branch 2>/dev/null | grep '^\*' | colrm 1 2)"
