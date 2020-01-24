@@ -16,6 +16,7 @@ function main() {
 
     # go environment
     export GOPATH="${HOME}/go"
+    export GO111MODULE=on
 
     # setup path
     export PATH="${GOPATH}/bin:${PATH}"

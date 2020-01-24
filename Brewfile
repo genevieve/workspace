@@ -4,6 +4,7 @@ tap 'ryanmoran/tools'
 tap 'genevieve/tap'
 
 brew 'awscli'
+brew 'azure-cli'
 brew 'bash-completion'
 brew 'bosh-cli'
 brew 'credhub-cli'
