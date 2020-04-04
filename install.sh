@@ -1,4 +1,4 @@
-#!/bin/bash -exu
+#!/bin/zsh -exu
 
 readonly PROGDIR="$(cd "$(dirname "${0}")" && pwd)"
 readonly WORKSPACE="${HOME}/workspace"
@@ -17,7 +17,7 @@ function main() {
 	brew bundle
 	brew cleanup
 
-	ln -sf "${PROGDIR}/.bash_profile" "${HOME}/.bash_profile"
+	ln -sf "${PROGDIR}/.zshrc" "${HOME}/.zshrc"
 	ln -sf "${PROGDIR}/.gitconfig" "${HOME}/.gitconfig"
 	ln -sf "${PROGDIR}/.inputrc" "${HOME}/.inputrc"
 	mkdir -pv "${WORKSPACE}"
@@ -37,7 +37,6 @@ function main() {
 	nvim -c "PlugInstall" -c "PlugUpdate" -c "qall" --headless
 	nvim -c "GoInstallBinaries" -c "GoUpdateBinaries" -c "qall!" --headless /tmp/foo.go
 
-	go get -u github.com/gobuffalo/packr/v2/packr2
 	go get -u github.com/onsi/ginkgo/ginkgo
 	go get -u github.com/onsi/gomega
 

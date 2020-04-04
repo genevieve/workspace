@@ -5,7 +5,7 @@ Plug 'flazz/vim-colorschemes' " All the colorschemes
 Plug 'tpope/vim-fugitive'     " Git Commands
 Plug 'fatih/vim-go'           " Lets do go development
 Plug 'hashivim/vim-terraform' " Format terraform hcl
-Plug 'benekastah/neomake'     " Nevoim specific plugins
+Plug 'neomake/neomake'        " Nevoim specific plugins
 Plug 'tpope/vim-unimpaired'   " Pairs of handy bracket mappings
 Plug 'tpope/vim-commentary'   " Make commenting easier
 Plug 'tpope/vim-vinegar'      " Make netrw way better
