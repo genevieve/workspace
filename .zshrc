@@ -4,7 +4,10 @@ ZSH_THEME="robbyrussell"
 
 source "${HOME}/.config/colorschemes/scripts/base16-tomorrow-night.sh"
 
-plugins=(git)
+plugins=(
+  git
+  z
+)
 
 source $ZSH/oh-my-zsh.sh
 
