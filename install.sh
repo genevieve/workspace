@@ -35,7 +35,7 @@ function main() {
 	mkdir -p "${HOME}/.config/nvim"
 	ln -sf "${PROGDIR}/init.vim" "${HOME}/.config/nvim/init.vim"
 	nvim -c "PlugInstall" -c "PlugUpdate" -c "qall" --headless
-	nvim -c "GoInstallBinaries" -c "GoUpdateBinaries" -c "qall!" --headless /tmp/foo.go
+	nvim -c "GoInstallBinaries" -c "GoUpdateBinaries" -c "qall!" --headless
 
 	go get -u github.com/onsi/ginkgo/ginkgo
 	go get -u github.com/onsi/gomega
