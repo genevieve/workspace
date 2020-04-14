@@ -32,6 +32,7 @@ brew 'yq'
 brew 'z'
 
 cask '1password'
+cask 'aws-vault'
 cask 'docker'
 cask 'encryptme'
 cask 'flycut'
