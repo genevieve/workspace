@@ -1,17 +1,19 @@
 " Plug for plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'flazz/vim-colorschemes' " All the colorschemes
-Plug 'tpope/vim-fugitive'     " Git Commands
-Plug 'fatih/vim-go'           " Lets do go development
-Plug 'hashivim/vim-terraform' " Format terraform hcl
-Plug 'neomake/neomake'        " Nevoim specific plugins
-Plug 'tpope/vim-unimpaired'   " Pairs of handy bracket mappings
-Plug 'tpope/vim-commentary'   " Make commenting easier
-Plug 'tpope/vim-vinegar'      " Make netrw way better
-Plug 'mileszs/ack.vim'        " search
-Plug 'ctrlpvim/ctrlp.vim'     " Fuzzy finder
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocomplete
+Plug 'flazz/vim-colorschemes'  " All the colorschemes
+Plug 'tpope/vim-fugitive'      " Git Commands
+Plug 'fatih/vim-go'            " Lets do go development
+Plug 'pangloss/vim-javascript' " Lets do javascript development
+Plug 'tpope/vim-unimpaired'    " Pairs of handy bracket mappings
+Plug 'tpope/vim-commentary'    " Make commenting easier
+Plug 'tpope/vim-vinegar'       " Make netrw way better
+Plug 'mileszs/ack.vim'         " search
+Plug 'dense-analysis/ale'      " Linting
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Autocomplete
+Plug 'cespare/vim-toml'
+Plug 'airblade/vim-gitgutter'
+
 
 call plug#end()
 
@@ -61,12 +63,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_function_parameters = 1
 let g:go_highlight_function_calls = 1
-let g:go_auto_type_info = 1
-let g:go_echo_command_info = 0
-
-" Terrraform Declaration
-let g:terraform_fmt_on_save=1
-let g:terraform_align=1
+let g:go_auto_type_info = 0
 
 " Turn on go-implements
 au FileType go nmap <Leader>i <Plug>(go-implements)
@@ -77,29 +74,28 @@ au FileType go nmap <Leader>a <Plug>(go-alternate-vertical)
 " Open godoc in a vertical split
 au FileType go nmap <Leader>d <Plug>(go-doc-vertical)
 
+" Linting
+let g:ale_linters = {
+\   'go': ['go build', 'golangci-lint'],
+\   'javascript': ['eslint', 'flow-language-server'],
+\}
+let g:ale_go_golangci_lint_package = 1
+let g:ale_go_golangci_lint_options = '--enable bodyclose --enable golint --enable gosec --enable unparam --enable scopelint --enable godox --enable testpackage --disable unused --disable deadcode'
+
+" Fixing
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
+
 " Unbreak YAML indents
 autocmd FileType yaml setlocal indentexpr=
-
-" Run neomake on buffer write
-call neomake#configure#automake('w')
-autocmd! BufWritePost * Neomake " Run neomake, it's like syntastic
-
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-"function! InsertTabWrapper()
-"    let col = col('.') - 1
-"    if !col || getline('.')[col - 1] !~ '\k'
-"        return "\<tab>"
-"    else
-"        return "\<c-p>"
-"    endif
-"endfunction
-"inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-"inoremap <s-tab> <c-n>
 
 " Enable autocompletion
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('auto_complete', v:false)
+call deoplete#custom#option('sources', {
+\ '_': ['ale'],
+\})
 inoremap <silent><expr> <TAB>
 		\ pumvisible() ? "\<C-n>" :
 		\ <SID>check_back_space() ? "\<TAB>" :
